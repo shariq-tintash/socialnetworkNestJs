@@ -7,8 +7,8 @@ export class CheckoutController {
   constructor(private readonly checkoutService: CheckoutService) {}
 
   @Post('/')
-  async checkout() {
-    const result = await this.checkoutService.checkout();
+  async checkout(@Body('id') user: string) {
+    const result = await this.checkoutService.checkout(user);
     return result;
   }
 }

@@ -45,7 +45,7 @@ export class AppModule {
         'posts/all',
         'posts/feed',
         'moderators/posts',
-        '/checkout',
+        'checkout',
       );
   }
 }
