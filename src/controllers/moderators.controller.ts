@@ -6,6 +6,7 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { SingUpDto } from 'src/validation/signUp.dto';
 
 import { ModeratorsService } from '../services/moderators.service';
 
@@ -14,14 +15,17 @@ export class ModeratorsController {
   constructor(private readonly moderatorsService: ModeratorsService) {}
 
   @Post('/signup')
-  async moderatorSignup() {
-    const result = await this.moderatorsService.signup();
+  async moderatorSignup(@Body() signUp: SingUpDto) {
+    const result = await this.moderatorsService.signup(signUp);
     return result;
   }
 
   @Post('/login')
-  async moderatorLogin() {
-    const result = await this.moderatorsService.login();
+  async moderatorLogin(
+    @Body('email') email: string,
+    @Body('password') password: string,
+  ) {
+    const result = await this.moderatorsService.login(email, password);
     return result;
   }
 

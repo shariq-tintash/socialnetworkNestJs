@@ -14,30 +14,4 @@ export const ModeratorSchema = new Schema({
     type: String,
     required: true,
   },
-  status: {
-    type: String,
-    default: '',
-  },
-  isPaid: {
-    type: Boolean,
-    default: false,
-  },
-  posts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Post',
-    },
-  ],
-  followers: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-    },
-  ],
-  following: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-    },
-  ],
 });
