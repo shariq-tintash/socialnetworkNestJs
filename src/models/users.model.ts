@@ -1,34 +1,47 @@
 import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
-export const UserSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  username: {
-    type: String,
-    required: true,
-  },
+export const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
     required: true,
   },
-  followers: {
-    type: Array,
-  },
-  following: {
-    type: Array,
-  },
-  type: {
+  name: {
     type: String,
-    default: 'unpaid',
+    required: true,
   },
+  status: {
+    type: String,
+    default: '',
+  },
+  isPaid: {
+    type: Boolean,
+    default: false,
+  },
+  posts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Post',
+      default: [],
+    },
+  ],
+  followers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      default: [],
+    },
+  ],
+  following: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      default: [],
+    },
+  ],
 });

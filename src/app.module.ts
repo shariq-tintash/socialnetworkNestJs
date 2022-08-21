@@ -17,7 +17,10 @@ import { SocketsModule } from './sockets/sockets.module';
     ModeratorsModule,
     CheckoutModule,
     SocketsModule,
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: 'process.env',
+    }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -34,11 +37,8 @@ export class AppModule {
     consumer
       .apply(AuthMiddleware)
       .forRoutes(
-        'users/profile',
-        'users/update',
-        'users/delete',
-        'users/follow-user/:id',
-        'users/unfollow-user/:id',
+        'users/follow/:id',
+        'users/unfollow/:id',
         'posts/create',
         'posts/update/:id',
         'posts/delete/:id',
