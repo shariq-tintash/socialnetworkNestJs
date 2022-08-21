@@ -42,7 +42,6 @@ export class AppModule {
         'posts/create',
         'posts/update/:id',
         'posts/delete/:id',
-        'posts/all',
         'posts/feed',
         'moderators/posts',
         'checkout',
