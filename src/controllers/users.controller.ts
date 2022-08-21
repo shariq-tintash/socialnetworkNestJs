@@ -1,14 +1,4 @@
-import {
-  Controller,
-  Delete,
-  Patch,
-  Post,
-  Body,
-  Param,
-  Get,
-  HttpException,
-  HttpStatus,
-} from '@nestjs/common';
+import { Controller, Post, Param, Body } from '@nestjs/common';
 
 import { UsersService } from '../services/user.service';
 
@@ -16,15 +6,21 @@ import { UsersService } from '../services/user.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Patch('/follow-user/:id')
-  async followUser() {
-    const result = await this.usersService.followUser();
+  @Post('/follow/:id')
+  async followUser(
+    @Param('id') idToFollow: string,
+    @Body('id') userId: string,
+  ) {
+    const result = await this.usersService.followUser(idToFollow, userId);
     return result;
   }
 
-  @Patch('/unfollow-user/:id')
-  async unfollowUser() {
-    const result = await this.usersService.unfollowUser();
+  @Post('/unfollow/:id')
+  async unfollowUser(
+    @Param('id') idToUnFollow: string,
+    @Body('id') userId: string,
+  ) {
+    const result = await this.usersService.unfollowUser(idToUnFollow, userId);
     return result;
   }
 }

@@ -5,7 +5,6 @@ import * as jwt from 'jsonwebtoken';
 
 import { Model } from 'mongoose';
 import { User } from '../interfaces/user.interface';
-import { Post } from '../interfaces/post.interface';
 import { SingUpDto } from 'src/validation/signUp.dto';
 import { ConfigService } from '@nestjs/config';
 
